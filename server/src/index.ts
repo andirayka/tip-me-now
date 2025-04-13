@@ -12,10 +12,6 @@ const io = new Server(httpServer, {
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("TipMeNow backend running!");
-});
-
 io.on("connection", (socket) => {
   console.log("🟢 New client connected:", socket.id);
 
