@@ -1,10 +1,12 @@
 import { useDonationStore } from "../store/donationStore";
 import { useDonationSocket } from "../hooks/useDonationSocket";
 import { useEffect, useRef } from "react";
+import useDonationSound from "../hooks/useDonationSound";
 
 const Streamer = () => {
   const donations = useDonationStore((s) => s.donations);
   useDonationSocket();
+  useDonationSound(); // 👈 plays sound on new donation
 
   const listRef = useRef<HTMLDivElement>(null);
 
