@@ -10,7 +10,6 @@ export type Donation = {
 type DonationStore = {
   donations: Donation[];
   addDonation: (donation: Donation) => void;
-  clearDonations: () => void;
 };
 
 export const useDonationStore = create<DonationStore>((set) => ({
@@ -19,5 +18,4 @@ export const useDonationStore = create<DonationStore>((set) => ({
     set((state) => ({
       donations: [...state.donations, donation],
     })),
-  clearDonations: () => set({ donations: [] }),
 }));

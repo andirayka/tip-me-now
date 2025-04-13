@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDonationStore } from "../store/donationStore";
 
+// Text to speech
 export const useTTS = (enabled: boolean) => {
   const donations = useDonationStore((s) => s.donations);
 

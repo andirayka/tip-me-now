@@ -5,10 +5,8 @@ import { useTTS } from "../hooks/useTTS";
 
 const StreamerPanel = () => {
   const donations = useDonationStore((s) => s.donations);
-  const clearDonations = useDonationStore((s) => s.clearDonations);
   useDonationSocket();
 
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [ttsEnabled, setTTSEnabled] = useState(true);
   useTTS(ttsEnabled);
 
@@ -18,28 +16,12 @@ const StreamerPanel = () => {
 
       <div className="mb-6 space-x-4">
         <button
-          onClick={clearDonations}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-        >
-          🧹 Clear Donations
-        </button>
-
-        <button
-          onClick={() => setSoundEnabled((prev) => !prev)}
-          className={`${
-            soundEnabled ? "bg-green-600" : "bg-gray-600"
-          } hover:opacity-90 text-white px-4 py-2 rounded`}
-        >
-          {soundEnabled ? "🔊 Sound ON" : "🔇 Sound OFF"}
-        </button>
-
-        <button
           onClick={() => setTTSEnabled((prev) => !prev)}
           className={`${
-            ttsEnabled ? "bg-blue-600" : "bg-gray-600"
+            ttsEnabled ? "bg-green-600" : "bg-gray-600"
           } hover:opacity-90 text-white px-4 py-2 rounded`}
         >
-          {ttsEnabled ? "🗣️ TTS ON" : "🤐 TTS OFF"}
+          {ttsEnabled ? "🗣️ Text to Speech ON" : "🤐 Text to Speech OFF"}
         </button>
       </div>
 
