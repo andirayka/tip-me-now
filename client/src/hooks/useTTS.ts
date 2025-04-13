@@ -10,7 +10,9 @@ export const useTTS = (enabled: boolean) => {
 
     const latest = donations[donations.length - 1];
     const msg = new SpeechSynthesisUtterance(
-      `${latest.name} donated Rp${latest.amount}. Message: ${latest.message}`
+      `${latest.name} donated ${latest.amount} Rupiah${
+        latest.message ? `. Message: ${latest.message}` : ""
+      }`
     );
 
     msg.volume = 1;
