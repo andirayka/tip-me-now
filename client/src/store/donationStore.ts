@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Donation = {
+export type Donation = {
   name: string;
   amount: number;
   message?: string;

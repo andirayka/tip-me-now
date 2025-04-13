@@ -1,20 +1,25 @@
-import { useEffect } from "react";
-import { useDonationStore } from "../store/donationStore";
+import { useEffect, useCallback } from "react";
+import { Donation, useDonationStore } from "../store/donationStore";
 import { socket } from "../utils/socket";
 
 export const useDonationSocket = () => {
   const addDonation = useDonationStore((s) => s.addDonation);
 
-  useEffect(() => {
-    socket.on("new_donation", (donation) => {
+  const onNewDonation = useCallback(
+    (donation: Donation) => {
       console.log("💸 Received donation:", donation);
       addDonation(donation);
-    });
+    },
+    [addDonation]
+  );
+
+  useEffect(() => {
+    socket.on("new_donation", onNewDonation);
 
     return () => {
-      socket.off("new_donation", addDonation);
+      socket.off("new_donation", onNewDonation);
     };
-  }, [addDonation]);
+  }, [onNewDonation]);
 
   return socket;
 };
